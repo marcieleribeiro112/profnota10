@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profissional Nota 10 💜</title>
+<style>
+:root{--ink:#35205f;--purple:#8050d9;--line:#dac7fa;--mint:#69dfbd;--bg:#eee5ff;--card:#f8f2ff;--muted:#796895}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{margin:0;background:linear-gradient(135deg,#e9ddff,#f5eaff,#e5e1ff);font-family:Arial,sans-serif;color:var(--ink)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;transition:.2s}
+button:hover{transform:translateY(-2px)}
+button:disabled{cursor:default;transform:none;opacity:1}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:#e4d3ff;border-bottom:2px solid #d3baff;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:900}
+.logo{display:grid;place-items:center;width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,#7841d4,#c17aff);color:white;font-size:26px}
+.top-tag,.pill{background:#d2b7ff;padding:9px 12px;border-radius:25px;font-size:12px;font-weight:bold}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:18px;max-width:1500px;margin:auto;padding:18px}
+.sidebar{display:flex;flex-direction:column;gap:13px}
+.panel,.card{background:var(--card);border:2px solid var(--line);border-radius:21px;padding:18px;box-shadow:0 7px 22px #57349b10}
+.profile{text-align:center;background:#e8d8ff;scroll-margin-top:90px}
+.avatar{font-size:43px;background:#d5baff;border-radius:20px;width:80px;height:80px;display:grid;place-items:center;margin:0 auto 10px}
+.profile input,.profile select{width:100%;padding:10px;margin:5px 0;border:2px solid #d1b7f5;border-radius:12px;background:#f8f2ff;color:var(--ink)}
+.btn{border:0;border-radius:12px;padding:11px 14px;font-weight:800}
+.primary{background:linear-gradient(135deg,#7841d4,#a56ef0);color:white}
+.secondary{background:#d8c2ff;color:#512b98}
+.mint{background:#69dfbd;color:#174b48}
+.orange{background:#ffc857;color:#60400b}
+.full{width:100%}
+.learned-button,.video-done{background:#69dfbd!important;color:#174b48!important;border:2px solid #38bd97!important}
+.small{font-size:12px;color:var(--muted);line-height:1.6}
+.profile-message{display:none;margin-top:10px;padding:10px;border-radius:12px;background:#c8f8e8;color:#17664e;font-size:13px}
+.profile-message.show{display:block}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{padding:11px;background:#e9dcff;border-radius:13px}
+.stat strong{display:block;font-size:23px;color:#7841d4;margin-top:5px}
+.progress{height:10px;background:#d8c7f3;border-radius:20px;overflow:hidden}
+.progress div{height:100%;background:linear-gradient(90deg,#69dfbd,#ffc857,#ff708b);width:0%;transition:.4s}
+.nav{display:flex;flex-direction:column;gap:5px;background:#e8d8ff}
+.nav button{border:0;text-align:left;background:transparent;color:var(--ink);padding:11px;border-radius:12px;font-weight:bold}
+.nav button.active,.nav button:hover{background:#cdb0ff}
+main{min-width:0}
+#content{scroll-margin-top:90px}
+.hero{padding:28px;background:linear-gradient(120deg,#7540d1,#ae77f4,#e58cce);color:white;border-radius:24px;margin-bottom:17px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(27px,4vw,42px);margin:10px 0}
+.hero p{line-height:1.65;max-width:700px}
+.hero .decor{position:absolute;right:20px;bottom:-25px;font-size:110px;opacity:.22}
+.eyebrow{text-transform:uppercase;letter-spacing:1.5px;font-size:11px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.tile{border:2px solid #ddcafa;border-radius:19px;padding:18px;background:linear-gradient(145deg,#f9f2ff,#e9d9ff)}
+.tile:nth-child(4n+2){background:linear-gradient(145deg,#ffe3ef,#f3d9ff)}
+.tile:nth-child(4n+3){background:linear-gradient(145deg,#dcfff3,#e7e0ff)}
+.tile:nth-child(4n){background:linear-gradient(145deg,#fff0c9,#f3dcff)}
+.tile .emoji{font-size:36px}
+.tile h3{margin:10px 0}
+.tile p{line-height:1.6;color:#6e5b89;font-size:14px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 15px}
+.section-title h2{margin:0;font-size:23px}
+.notice{padding:12px 15px;border-radius:13px;margin:0 0 14px;background:#fff0c9;color:#735019;font-size:14px;line-height:1.5}
+.notice:empty{display:none}
+.tip-output{margin-top:12px;padding:13px;border-radius:13px;background:#d8fff0;border:2px solid #69dfbd;color:#17664e;line-height:1.6;font-size:14px;animation:pop .25s}
+.tip-output strong{display:block;margin-bottom:5px}
+.manual-item{border-bottom:1px solid var(--line);padding:15px 0;line-height:1.6}
+.question{padding:18px;border:2px solid var(--line);border-radius:17px;margin:12px 0;background:#f4ebff}
+.answers{display:grid;gap:9px;margin-top:14px}
+.answer{background:#e9ddff;border:2px solid #d4bdf8;padding:13px;border-radius:12px;text-align:left;color:var(--ink);line-height:1.5}
+.answer:hover{border-color:var(--purple);background:#ddc8ff}
+.answer.correct{background:#c8f8e8;border-color:#24b88b}
+.answer.wrong{background:#ffdce5;border-color:#ff5478}
+.feedback{padding:13px;border-radius:13px;margin-top:12px;font-weight:bold;line-height:1.55}
+.feedback.good{background:#c8f8e8;color:#17664e}
+.feedback.bad{background:#ffdce5;color:#963451}
+.game-card{background:linear-gradient(135deg,#f7edff,#e4d2ff);border:2px solid #d2b5fa;border-radius:21px;padding:20px}
+.game-option{width:100%;margin:4px 0}
+.end-screen{text-align:center;padding:22px 10px}
+.big-emoji{font-size:57px;margin:10px}
+.video-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,1fr);gap:15px}
+.video-screen{min-height:300px;background:linear-gradient(135deg,#44217f,#8a53d4,#d16dbd);color:white;border-radius:20px;display:flex;flex-direction:column;justify-content:space-between;padding:17px;overflow:hidden}
+.video-top{display:flex;justify-content:space-between;gap:8px}
+.video-badge{background:#ffffff30;padding:7px 10px;border-radius:20px;font-size:12px}
+.scene{flex:1;display:flex;align-items:center;justify-content:space-around;gap:9px;min-height:170px}
+.person{font-size:clamp(45px,8vw,82px);animation:bob 2s infinite}
+.bubble{background:#f8f0ff;color:var(--ink);padding:12px;border-radius:14px;font-weight:bold;max-width:220px;line-height:1.5}
+.video-caption{background:#ffffff26;border-radius:12px;padding:12px;line-height:1.5}
+.video-controls{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.video-controls button{border:0;border-radius:11px;padding:10px 12px;font-weight:bold}
+.scene-list{display:flex;flex-direction:column;gap:8px}
+.scene-choice{border:2px solid var(--line);background:#eee2ff;border-radius:12px;padding:11px;text-align:left;color:var(--ink);display:flex;gap:9px;align-items:center}
+.scene-choice.active{border-color:var(--purple);background:#d4b8ff}
+.scene-choice span{font-size:24px}
+.scene-choice strong{display:block;margin-bottom:4px}
+.scene-choice small{color:var(--muted);line-height:1.4}
+.certificate{border:7px double #ffc857;text-align:center;padding:30px 18px;border-radius:18px;background:#fff3df}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+.level-card,.achievement,.story-card,.profile-result,.assistant-box,.flashcard,.before-after{background:linear-gradient(145deg,#f9f2ff,#e9d9ff);border:2px solid #dac7fa;border-radius:17px;padding:16px;margin:12px 0}
+.medals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.medal{padding:13px;text-align:center;background:#fff0c9;border:2px solid #ffc857;border-radius:15px}
+.medal.locked{filter:grayscale(1);opacity:.55}
+.medal div{font-size:35px}
+.story-options,.assistant-options{display:grid;gap:9px;margin-top:12px}
+.story-options button,.assistant-options button{padding:13px;border:2px solid #d4bdf8;border-radius:12px;background:#e9ddff;text-align:left;color:var(--ink)}
+.flashcard{min-height:150px;display:grid;place-items:center;text-align:center;font-size:19px;font-weight:bold;cursor:pointer}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bad-example,.good-example{padding:13px;border-radius:12px;line-height:1.5}
+.bad-example{background:#ffdce5;color:#963451}
+.good-example{background:#c8f8e8;color:#17664e}
+.simulation-room{background:linear-gradient(135deg,#eee2ff,#d9c5ff);padding:20px;border-radius:18px;border:2px solid var(--line)}
+.simulation-room .person{font-size:60px}
+.evaluation-stars{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.evaluation-stars button{font-size:26px;border:0;background:#ffe8ad;border-radius:12px;padding:10px}
+textarea{width:100%;padding:12px;border:2px solid #d1b7f5;border-radius:12px;background:#fff;color:var(--ink);resize:vertical}
+
+/* NOVO MÓDULO: INTÉRPRETE */
+.interpreter-banner{background:linear-gradient(135deg,#e0d0ff,#d6fff1);border:2px solid #c9b0f5;border-radius:20px;padding:20px;margin-bottom:15px}
+.interpreter-banner .big-icon{font-size:58px;text-align:center}
+.interpreter-card{background:#f8f2ff;border:2px solid #dac7fa;border-radius:17px;padding:17px;margin:12px 0;line-height:1.7}
+.interpreter-card h3{margin-top:0}
+.interpreter-example{background:linear-gradient(135deg,#e8dcff,#fff0f6);border:2px solid #d4bdf8;border-radius:18px;padding:18px;margin:14px 0}
+.interpreter-dialogue{display:flex;gap:12px;align-items:flex-start;margin:12px 0}
+.interpreter-dialogue .person-icon{font-size:35px;min-width:42px;text-align:center}
+.interpreter-dialogue .speech{background:#fff;border:1px solid #dac7fa;border-radius:13px;padding:12px;flex:1;line-height:1.6}
+.interpreter-tip{background:#d8fff0;border:2px solid #69dfbd;color:#17664e;border-radius:15px;padding:15px;margin:12px 0;line-height:1.6}
+.interpreter-quiz{background:#f4ebff;border:2px solid #dac7fa;border-radius:17px;padding:18px;margin-top:18px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pop{from{opacity:.4;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@media(max-width:850px){.layout{grid-template-columns:1fr;padding:11px}.nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.video-layout{grid-template-columns:1fr}.topbar{padding:11px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding:22px}.top-tag{display:none}.video-screen{min-height:290px;padding:12px}.bubble{font-size:12px;padding:9px}.medals{grid-template-columns:repeat(2,minmax(0,1fr))}.before-after{grid-template-columns:1fr}}
+@media print{.topbar,.sidebar,.notice,footer,.no-print{display:none!important}.layout{display:block;padding:0}.hero{background:white;color:black}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="brand"><div class="logo">★</div><div>Profissional Nota 10<div class="small">Aprender • Praticar • Evoluir</div></div></div>
+<div class="top-tag">🎮 MANUAL INTERATIVO</div>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+<section class="panel profile" id="profilePanel">
+<div class="avatar" id="avatarDisplay">🧑‍💼</div>
+<strong id="profileNameDisplay">Novo profissional</strong>
+<p class="small" id="profileRoleDisplay">Aprendiz em formação</p>
+<div style="display:flex;justify-content:center;gap:5px;margin:10px 0;flex-wrap:wrap">
+<button class="btn secondary" onclick="chooseAvatar('🧑‍💼')" title="Profissional">🧑‍💼</button>
+<button class="btn secondary" onclick="chooseAvatar('👩‍💻')" title="Tecnologia">👩‍💻</button>
+<button class="btn secondary" onclick="chooseAvatar('🧑‍🔧')" title="Área técnica">🧑‍🔧</button>
+<button class="btn secondary" onclick="chooseAvatar('👨‍🍳')" title="Gastronomia">👨‍🍳</button>
+<button class="btn secondary" onclick="chooseAvatar('🌐')" title="Intérprete de línguas">🌐</button>
+</div>
+<p class="small">🌐 Novo avatar: Intérprete de línguas</p>
+<input id="profileName" placeholder="Seu nome">
+<select id="profileRole">
+<option>Aprendiz em formação</option>
+<option>Estudante</option>
+<option>Atendimento ao cliente</option>
+<option>Auxiliar administrativo</option>
+<option>Trabalho em equipe</option>
+<option>Intérprete de línguas</option>
+</select>
+<button class="btn primary full" onclick="saveProfile()">💜 Salvar perfil</button>
+<div id="profileMessage" class="profile-message">Perfil salvo!</div>
+</section>
+
+<section class="panel">
+<h3 style="margin-top:0">📊 Seu progresso</h3>
+<div class="stats">
+<div class="stat">⭐ XP<strong id="xp">0</strong></div>
+<div class="stat">🏅 Reputação<strong id="rep">0</strong></div>
+<div class="stat">✅ Atividades<strong id="done">0</strong></div>
+<div class="stat">🎯 Nível<strong id="level">1</strong></div>
+</div>
+<p class="small">Barra de evolução</p>
+<div class="progress"><div id="progressBar"></div></div>
+<button class="btn secondary full" style="margin-top:12px" onclick="toggleSound()" id="soundButton">🔊 Som ligado</button>
+</section>
+
+<nav class="panel nav">
+<button data-page="home" onclick="go('home')">🏠 Início</button>
+<button data-page="profile" onclick="go('profile')">👤 Perfil</button>
+<button data-page="definition" onclick="go('definition')">💡 O que é?</button>
+<button data-page="manual" onclick="go('manual')">📘 Manual</button>
+<button data-page="interpreter" onclick="go('interpreter')">🌐 Intérprete de línguas</button>
+<button data-page="simulation" onclick="go('simulation')">🧠 Quiz</button>
+<button data-page="games" onclick="go('games')">🎮 Jogos</button>
+<button data-page="videos" onclick="go('videos')">🎬 Cenas animadas</button>
+<button data-page="profiletest" onclick="go('profiletest')">🧩 Teste de perfil</button>
+<button data-page="workplace" onclick="go('workplace')">🏢 Simulação real</button>
+<button data-page="stories" onclick="go('stories')">📖 Histórias e escolhas</button>
+<button data-page="achievements" onclick="go('achievements')">🥇 Conquistas</button>
+<button data-page="assistant" onclick="go('assistant')">🤖 Assistente</button>
+<button data-page="flashcards" onclick="go('flashcards')">🃏 Cartões</button>
+<button data-page="examples" onclick="go('examples')">🔄 Antes e depois</button>
+<button data-page="evaluation" onclick="go('evaluation')">⭐ Avaliar site</button>
+<button data-page="certificate" onclick="go('certificate')">🏆 Certificado</button>
+</nav>
+</aside>
+
+<main>
+<div id="notice" class="notice" role="status" aria-live="polite"></div>
+<div id="content"></div>
+</main>
+</div>
+<footer>Profissional Nota 10 💜 • Manual digital interativo</footer>
+
+<script>
+"use strict";
+
+const $=id=>document.getElementById(id);
+
+const initial={
+name:"",role:"Aprendiz em formação",avatar:"🧑‍💼",
+xp:0,rep:0,done:0,answers:{},quizIndex:0,
+videoIndex:0,videoStep:0,videoWatched:{},sound:true,evaluation:null
+};
+
+let S={...initial};
+try{
+const saved=JSON.parse(localStorage.getItem("profissionalNota10Plus")||"null");
+if(saved)S={...initial,...saved,answers:saved.answers||{},videoWatched:saved.videoWatched||{}};
+}catch(e){}
+
+let videoTimer=null,videoPlaying=false;
+let gameIndex=0,gameAnswered=false,memoryCards=[],memoryFirst=null,memoryLock=false,memoryFound=0,currentGame="";
+let storyStep=0,flashIndex=0,flashBack=false,workStep=0,selectedRating=0;
+let profileAnswers={};
+
+function persist(){
+try{localStorage.setItem("profissionalNota10Plus",JSON.stringify(S))}catch(e){}
+}
+
+function playSound(correct){
+if(!S.sound)return;
+try{
+const AC=window.AudioContext||window.webkitAudioContext;
+if(!AC)return;
+const c=new AC(),n=c.currentTime;
+(correct?[523,659,784]:[320,220]).forEach((f,i)=>{
+const o=c.createOscillator(),g=c.createGain();
+o.frequency.value=f;o.type=correct?"sine":"triangle";
+g.gain.setValueAtTime(.001,n+i*.12);
+g.gain.exponentialRampToValueAtTime(.1,n+i*.12+.02);
+g.gain.exponentialRampToValueAtTime(.001,n+i*.12+.15);
+o.connect(g);g.connect(c.destination);o.start(n+i*.12);o.stop(n+i*.12+.17);
+});
+setTimeout(()=>c.close(),700);
+}catch(e){}
+}
+
+function toggleSound(){
+S.sound=!S.sound;persist();
+$("soundButton").textContent=S.sound?"🔊 Som ligado":"🔇 Som desligado";
+if(S.sound)playSound(true);
+}
+
+function notify(m,t="info"){
+const e=$("notice");
+e.textContent=m;
+e.style.background=t==="good"?"#c8f8e8":t==="bad"?"#ffdce5":"#fff0c9";
+e.style.color=t==="good"?"#17664e":t==="bad"?"#963451":"#735019";
+}
+
+function chooseAvatar(a){S.avatar=a;update()}
+
+function saveProfile(){
+S.name=$("profileName").value.trim()||"Novo profissional";
+S.role=$("profileRole").value;
+update();
+$("profileMessage").textContent="💜 Perfil salvo com sucesso!";
+$("profileMessage").classList.add("show");
+notify("Perfil salvo!","good");
+playSound(true);
+setTimeout(()=>$("profileMessage").classList.remove("show"),3000);
+}
+
+function levelName(){
+const n=Math.floor(S.xp/100)+1;
+if(n===1)return "Iniciante";
+if(n===2)return "Em desenvolvimento";
+if(n===3)return "Profissional destaque";
+return "Profissional Nota 10";
+}
+
+function update(){
+$("xp").textContent=S.xp;
+$("rep").textContent=S.rep;
+$("done").textContent=S.done;
+$("level").textContent=Math.floor(S.xp/100)+1;
+$("progressBar").style.width=(S.xp%100)+"%";
+$("profileNameDisplay").textContent=S.name||"Novo profissional";
+$("profileRoleDisplay").textContent=S.role;
+$("avatarDisplay").textContent=S.avatar;
+$("profileName").value=S.name;
+$("profileRole").value=S.role;
+$("soundButton").textContent=S.sound?"🔊 Som ligado":"🔇 Som desligado";
+persist();
+}
+
+function reward(points=10,key){
+if(key&&S.answers[key])return false;
+if(key)S.answers[key]=true;
+S.xp+=points;
+S.rep+=Math.max(1,Math.floor(points/2));
+S.done++;
+update();
+return true;
+}
+
+/* NAVEGAÇÃO */
+const pages={
+home:home,
+definition:definition,
+manual:manual,
+interpreter:interpreterPage,
+simulation:simulation,
+games:games,
+videos:videos,
+certificate:certificate,
+profiletest:profiletest,
+workplace:workplace,
+stories:storiesPage,
+achievements:achievements,
+assistant:assistant,
+flashcards:flashcardsPage,
+examples:examples,
+evaluation:evaluation
+};
+
+function go(page){
+stopVideo();
+
+document.querySelectorAll("[data-page]").forEach(b=>{
+b.classList.toggle("active",b.dataset.page===page);
+});
+
+if(page==="profile"){
+setTimeout(()=>{
+$("profilePanel").scrollIntoView({behavior:"smooth",block:"start"});
+},50);
+return;
+}
+
+const render=pages[page]||home;
+render();
+
+setTimeout(()=>{
+$("content").scrollIntoView({behavior:"smooth",block:"start"});
+},50);
+}
+
+/* ESTRUTURA DAS PÁGINAS */
+function shell(label,title,desc,body){
+$("content").innerHTML=`
+<section class="hero">
+<div class="eyebrow">${label}</div>
+<h1>${title}</h1>
+<p>${desc}</p>
+<div class="decor">★</div>
+</section>${body}`;
+}
+
+function tile(e,t,d,b,a){
+return `<div class="tile">
+<div class="emoji">${e}</div>
+<h3>${t}</h3><p>${d}</p>
+<button class="btn primary" onclick="${a}">${b}</button>
+</div>`;
+}
+
+/* INÍCIO */
+function home(){
+shell("Bem-vindo ao manual","Prepare-se para brilhar! 🌟",
+"Aprenda, jogue e descubra como se tornar um profissional que faz a diferença.",
+`<div class="grid">
+${tile("💡","Aprenda com exemplos","Atitudes corretas e incorretas em situações reais.","Aprender →","go('definition')")}
+${tile("🧠","Quiz profissional","Perguntas com decisões complexas e pegadinhas.","Começar quiz →","go('simulation')")}
+${tile("🎮","Área de jogos","Desafios profissionais com diferentes níveis.","Jogar agora →","go('games')")}
+${tile("🎬","Cenas animadas","Histórias com personagens e controles de reprodução.","Assistir →","go('videos')")}
+${tile("🧩","Descubra seu perfil","Conheça suas habilidades profissionais.","Fazer teste →","go('profiletest')")}
+${tile("🏢","Simulação real","Resolva situações de um ambiente de trabalho.","Entrar →","go('workplace')")}
+${tile("🌐","Intérprete de línguas","Conheça essa profissão, sua importância e um exemplo de atendimento.","Conhecer módulo →","go('interpreter')")}
+</div>
+<section class="card" style="margin-top:15px">
+<h2>🚀 Sua missão</h2>
+<p>Conclua atividades para ganhar XP. Leia as explicações, avalie as consequências e pratique o respeito no ambiente profissional.</p>
+<div class="progress"><div style="width:${Math.min(100,S.done*5)}%"></div></div>
+<p class="small">Você já concluiu ${S.done} atividades.</p>
+<h3>Seu nível: ${levelName()}</h3>
+</section>`);
+}
+
+/* NOVO MÓDULO EXCLUSIVO: INTÉRPRETE DE LÍNGUAS */
+function interpreterPage(){
+shell("Módulo especial 🌐","Intérprete de Línguas",
+"Conheça uma profissão essencial para aproximar pessoas, superar barreiras de comunicação e tornar o atendimento mais acessível.",
+`
+<div class="interpreter-banner">
+<div class="big-icon">🌐 🗣️</div>
+<h2 style="text-align:center">A comunicação conecta pessoas!</h2>
+<p style="text-align:center;line-height:1.7">
+O intérprete de línguas é o profissional que facilita a comunicação entre pessoas que utilizam idiomas diferentes ou modalidades distintas de comunicação, transmitindo as mensagens com fidelidade e respeito.
+</p>
+</div>
+
+<div class="grid">
+<div class="interpreter-card">
+<h3>💬 O que faz esse profissional?</h3>
+<p>O intérprete escuta uma pessoa e transmite sua mensagem para outra língua ou modalidade de comunicação, permitindo que todos compreendam a conversa.</p>
+<p>Ele deve manter o sentido da mensagem original, sem inventar informações, esconder partes ou acrescentar opiniões pessoais.</p>
+</div>
+
+<div class="interpreter-card">
+<h3>🎯 Qual é sua importância?</h3>
+<p>Ajuda pessoas a participarem de conversas, receberem informações e exercerem seus direitos, mesmo quando não compartilham o mesmo idioma.</p>
+<p>Seu trabalho contribui para a inclusão, a autonomia e o acesso à informação.</p>
+</div>
+
+<div class="interpreter-card">
+<h3>🏢 Onde pode trabalhar?</h3>
+<ul>
+<li>Hospitais e unidades de saúde.</li>
+<li>Escolas e universidades.</li>
+<li>Recepções e atendimentos ao público.</li>
+<li>Eventos, palestras e reuniões.</li>
+<li>Empresas e atividades relacionadas ao turismo.</li>
+</ul>
+</div>
+
+<div class="interpreter-card">
+<h3>⭐ Características importantes</h3>
+<ul>
+<li>Domínio dos idiomas ou modalidades de comunicação envolvidos.</li>
+<li>Escuta atenta e concentração.</li>
+<li>Neutralidade e fidelidade à mensagem.</li>
+<li>Respeito e confidencialidade.</li>
+<li>Conhecimento cultural e responsabilidade.</li>
+</ul>
+</div>
+</div>
+
+<div class="interpreter-card">
+<h2>🤟 E a Libras?</h2>
+<p>A <strong>Libras (Língua Brasileira de Sinais)</strong> é uma língua utilizada por muitas pessoas surdas no Brasil. Ela possui estrutura gramatical própria e não é simplesmente um conjunto de gestos.</p>
+<p>O intérprete de Libras facilita a comunicação entre pessoas surdas e ouvintes, transmitindo as mensagens entre a Libras e a língua portuguesa.</p>
+<div class="interpreter-tip">
+<strong>💚 Uma atitude importante:</strong>
+Pergunte à pessoa qual forma de comunicação ela prefere. Nem toda pessoa surda utiliza Libras da mesma maneira ou deseja o mesmo tipo de apoio.
+</div>
+</div>
+
+<div class="section-title">
+<h2>🎭 Exemplo prático de atendimento</h2>
+<span class="pill">Situação profissional</span>
+</div>
+
+<div class="interpreter-example">
+<h3>📍 Situação: uma pessoa chega à recepção falando espanhol.</h3>
+<p>Ela precisa de uma informação, mas não consegue se comunicar facilmente em português. O profissional responsável procura apoio de um intérprete qualificado.</p>
+
+<div class="interpreter-dialogue">
+<div class="person-icon">👩</div>
+<div class="speech"><strong>Visitante:</strong><br>“Hola, necesito información sobre mi reserva.”<br><span class="small">Olá, preciso de informações sobre minha reserva.</span></div>
+</div>
+
+<div class="interpreter-dialogue">
+<div class="person-icon">🌐</div>
+<div class="speech"><strong>Intérprete:</strong><br>Transmite à equipe, em português, que a visitante precisa de informações sobre a reserva.</div>
+</div>
+
+<div class="interpreter-dialogue">
+<div class="person-icon">🧑‍💼</div>
+<div class="speech"><strong>Atendente:</strong><br>“Claro! Vou verificar sua reserva e explicar as informações.”</div>
+</div>
+
+<div class="interpreter-dialogue">
+<div class="person-icon">🌐</div>
+<div class="speech"><strong>Intérprete:</strong><br>Transmite a resposta ao espanhol, mantendo o significado da mensagem.</div>
+</div>
+
+<div class="interpreter-tip">
+<strong>✅ Resultado:</strong>
+A visitante consegue compreender a orientação e o atendimento acontece com mais clareza e respeito.
+</div>
+</div>
+
+<div class="interpreter-card">
+<h2>📌 Como agir corretamente?</h2>
+<ol>
+<li>Pergunte à pessoa qual idioma ou forma de comunicação ela prefere.</li>
+<li>Procure apoio de um intérprete qualificado quando necessário.</li>
+<li>Fale diretamente com a pessoa atendida, não apenas com o intérprete.</li>
+<li>Não invente, omita ou altere informações.</li>
+<li>Respeite a privacidade de tudo o que for compartilhado.</li>
+<li>Tenha paciência e confirme se a comunicação foi compreendida.</li>
+</ol>
+</div>
+
+<div class="interpreter-quiz">
+<span class="pill">🎯 Teste seus conhecimentos</span>
+<h2>O que você faria nessa situação?</h2>
+<p>Uma pessoa chega ao atendimento e informa que não compreende português. Você não domina o idioma dela. Qual é a melhor atitude?</p>
+<div class="answers">
+<button class="answer" onclick="answerInterpreter(0,this)">A. Falar mais alto e repetir as mesmas palavras, mesmo sem saber se ela compreende.</button>
+<button class="answer" onclick="answerInterpreter(1,this)">B. Ignorar a dificuldade e pedir que outra pessoa resolva sem explicar nada.</button>
+<button class="answer" onclick="answerInterpreter(2,this)">C. Perguntar qual idioma ela utiliza e procurar apoio adequado para facilitar a comunicação.</button>
+<button class="answer" onclick="answerInterpreter(3,this)">D. Inventar uma resposta para encerrar rapidamente o atendimento.</button>
+</div>
+<div id="interpreterFeedback"></div>
+</div>
+
+<div class="card" style="margin-top:15px;text-align:center">
+<div style="font-size:45px">🌐</div>
+<h2>Ser intérprete é aproximar pessoas!</h2>
+<p>Mais do que traduzir palavras, esse profissional ajuda a construir compreensão, respeito e inclusão.</p>
+<button class="btn primary" onclick="go('home')">Voltar ao início 🏠</button>
+</div>
+`);
+}
+
+function answerInterpreter(choice,b){
+const area=b.parentElement;
+if(area.dataset.answered==="1")return;
+area.dataset.answered="1";
+
+const buttons=area.querySelectorAll("button");
+buttons.forEach((x,i)=>{
+x.disabled=true;
+if(i===2)x.classList.add("correct");
+});
+if(choice!==2)b.classList.add("wrong");
+
+const feedback=$("interpreterFeedback");
+if(choice===2){
+feedback.className="feedback good";
+feedback.textContent="🎉 Muito bem! A melhor atitude é descobrir a forma de comunicação da pessoa e buscar apoio adequado, respeitando sua autonomia.";
+reward(10,"interpreter-module");
+playSound(true);
+notify("Você concluiu o desafio do intérprete! +10 XP","good");
+}else{
+feedback.className="feedback bad";
+feedback.textContent="Essa não é a melhor atitude. O correto é perguntar qual idioma ou modalidade de comunicação a pessoa utiliza e buscar apoio adequado.";
+playSound(false);
+notify("Leia a explicação e tente novamente em outra visita ao módulo.","bad");
+}
+}
+
+/* DEFINIÇÕES */
+const tips={
+communication:"Fale com clareza, escute até o fim e confirme se entendeu.",
+punctuality:"Use agenda, alarme ou lista de tarefas para se organizar.",
+team:"Combine responsabilidades e mantenha a equipe informada.",
+ethics:"Reconhecer um erro permite corrigir o problema e aprender.",
+organization:"Priorize tarefas e confira o resultado antes de entregar.",
+service:"Mantenha a calma, faça perguntas e explique soluções possíveis.",
+security:"Nunca compartilhe senhas e confirme pedidos suspeitos por canais oficiais.",
+respect:"Trate diferenças com dignidade e inclua as pessoas nas atividades.",
+interpreting:"O intérprete facilita a comunicação entre pessoas que utilizam idiomas diferentes ou Libras. Escute com atenção, transmita a mensagem sem alterar seu sentido, respeite a confidencialidade e confirme previamente qual idioma ou modalidade de comunicação a pessoa utiliza."
+};
+
+function definition(){
+const ts=[
+["💬","Comunicação","Explicar uma dúvida com educação é melhor do que interromper.","communication"],
+["⏰","Pontualidade","Planejar horários e avisar sobre imprevistos demonstra responsabilidade.","punctuality"],
+["🤝","Trabalho em equipe","Dividir tarefas e compartilhar informações ajuda a equipe.","team"],
+["⚖️","Ética","Informar um erro e colaborar na correção é responsável.","ethics"],
+["📋","Organização","Registrar prazos e revisar tarefas evita retrabalho.","organization"],
+["😊","Atendimento","Ouvir com atenção e procurar uma solução é melhor do que discutir.","service"],
+["🔐","Segurança","Proteger senhas e dados reduz riscos.","security"],
+["🌈","Respeito","Evitar exclusão e comentários ofensivos cria um ambiente seguro.","respect"],
+["🌍","Intérprete de línguas","Facilita a comunicação entre pessoas que utilizam idiomas diferentes ou Libras.","interpreting"]
+];
+shell("Entenda na prática","O que é ser um Profissional Nota 10? 💡",
+"Combine conhecimento, responsabilidade, respeito e vontade de aprender.",
+`<div class="grid">${ts.map(t=>`
+<div class="tile"><div class="emoji">${t[0]}</div><h3>${t[1]}</h3><p>${t[2]}</p>
+<button class="btn primary" onclick="showTip('${t[3]}',this)">Ver dica 💡</button>
+<div class="tip-holder"></div></div>`).join("")}</div>`);
+}
+
+function showTip(topic,b){
+const h=b.parentElement.querySelector(".tip-holder");
+if(h.querySelector(".tip-output")){
+h.innerHTML="";
+b.textContent="Ver dica 💡";
+return;
+}
+document.querySelectorAll(".tip-output").forEach(x=>x.remove());
+document.querySelectorAll(".tip-holder").forEach(x=>{
+const z=x.parentElement.querySelector("button");
+if(z)z.textContent="Ver dica 💡";
+});
+h.innerHTML=`<div class="tip-output"><strong>💡 Dica profissional</strong>${tips[topic]}</div>`;
+b.textContent="Ocultar dica ▲";
+playSound(true);
+}
+
+/* MANUAL */
+const manualItems=[
+["Comunicação","Fale com clareza, escute sem interromper e confirme se compreendeu a orientação."],
+["Pontualidade","Planeje o deslocamento e avise com antecedência se ocorrer um imprevisto."],
+["Trabalho em equipe","Compartilhe informações, respeite ideias diferentes e cumpra sua parte."],
+["Ética","Não esconda erros nem altere informações. Comunique problemas com responsabilidade."],
+["Organização","Anote tarefas, estabeleça prioridades e confira o trabalho antes de entregá-lo."],
+["Atendimento","Escute a necessidade da pessoa, mantenha a calma e procure uma solução."],
+["Segurança digital","Não compartilhe senhas, não exponha dados pessoais e confirme mensagens suspeitas."],
+["Resolução de conflitos","Converse com respeito, ouça os envolvidos e procure uma solução justa."],
+["Inclusão","Respeite diferenças, evite comentários ofensivos e ajude a criar um ambiente acolhedor."],
+["Desenvolvimento","Peça feedback, reconheça o que pode melhorar e pratique novas habilidades."],
+["Interpretação de línguas","O intérprete facilita a comunicação entre pessoas que utilizam idiomas diferentes ou Libras. Deve transmitir o conteúdo com fidelidade, manter a confidencialidade e respeitar a forma de comunicação de cada pessoa. Libras é uma língua, com estrutura própria, e não apenas um conjunto de gestos."]
+];
+
+function manual(){
+shell("Guia prático","Manual do profissional 📘",
+"Abra os tópicos, leia as dicas e marque o que aprendeu.",
+`<section class="card">${manualItems.map((it,i)=>{
+const learned=!!S.answers["manual-"+i];
+return `<details class="manual-item"><summary style="cursor:pointer;font-weight:bold">${i+1}. ${it[0]}</summary>
+<p>${it[1]}</p>
+<button class="btn ${learned?"learned-button":"secondary"} full" ${learned?"disabled":""} onclick="markLearned(${i},this)">${learned?"✅ Aprendido e salvo":"Marcar como aprendido ✓"}</button>
+</details>`;
+}).join("")}</section>`);
+}
+
+function markLearned(i,b){
+const k="manual-"+i;
+if(S.answers[k])return;
+reward(5,k);
+b.textContent="✅ Aprendido e salvo";
+b.classList.remove("secondary");
+b.classList.add("learned-button");
+b.disabled=true;
+playSound(true);
+notify("Tópico salvo como aprendido! +5 XP","good");
+}
+
+/* QUIZ */
+const questions=[
+{level:"MÉDIA",q:"Você percebe que uma orientação recebida está incompleta e o prazo é curto. Qual é a melhor atitude?",a:["Inventar a informação mais provável.","Solicitar o dado que falta e explicar o impacto no prazo.","Entregar incompleto sem avisar.","Esperar até alguém perceber o atraso."],c:1,exp:"Comunicar a falta de informação evita erros e permite alinhar expectativas."},
+{level:"MÉDIA",q:"Um colega apresenta uma proposta diferente da sua. Como agir?",a:["Comparar as propostas com os objetivos e ouvir os argumentos.","Rejeitar a proposta porque você já decidiu.","Concordar e tentar impedir depois.","Interromper para demonstrar experiência."],c:0,exp:"Avaliar ideias pelo mérito fortalece a colaboração."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma análise indica que a produtividade aumentou, mas os erros também cresceram. A gestão quer divulgar apenas a produtividade. Qual decisão é mais defensável?",a:["Divulgar só o indicador solicitado.","Recusar qualquer divulgação até analisar todos os dados possíveis.","Apresentar ambos os indicadores e recomendar análise da qualidade e das causas.","Substituir a taxa de erros pela do mês anterior."],c:2,exp:"Uma avaliação equilibrada considera quantidade e qualidade."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma decisão de equipe depende de uma suposição não testada e exige investimento alto. A maioria quer começar imediatamente. O que fazer?",a:["Seguir a maioria porque discordar é falta de colaboração.","Apresentar a suposição, propor uma validação proporcional ao risco e explicar o custo de decidir sem evidência.","Impedir a decisão sem explicar os motivos.","Realizar o investimento e testar depois, independentemente do risco."],c:1,exp:"Uma validação proporcional ao risco melhora a decisão."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Você identifica uma diferença entre o procedimento oficial e uma prática informal que todos seguem. A prática informal é mais rápida, mas não foi aprovada. Qual é a resposta mais adequada?",a:["Continuar porque o costume demonstra que funciona.","Mudar tudo por conta própria, sem comunicar ninguém.","Ignorar a diferença enquanto não houver reclamação.","Verificar os requisitos, comunicar a divergência e solicitar orientação antes de legitimar a prática."],c:3,exp:"Uma prática comum não se torna automaticamente autorizada ou segura."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Um relatório apresenta uma conclusão correta, mas a amostra utilizada é pequena e pouco representativa. A equipe quer generalizar o resultado para todos os clientes. O que fazer?",a:["Apresentar a conclusão como universal, já que os cálculos estão certos.","Apagar o resultado porque uma amostra pequena nunca fornece informação útil.","Informar o alcance e as limitações da amostra e evitar generalizações que os dados não sustentam.","Aumentar artificialmente o número de observações no relatório."],c:2,exp:"As conclusões precisam refletir a qualidade dos dados."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Duas solicitações confidenciais parecem relacionadas. Compartilhar os dados aceleraria a solução, mas você não sabe se ambas as equipes têm autorização. O que fazer?",a:["Compartilhar tudo, pois a finalidade é melhorar o resultado.","Verificar as permissões e utilizar apenas os dados necessários por um canal autorizado.","Enviar os dados pessoais para um grupo amplo.","Substituir os nomes por iniciais e presumir que isso resolve qualquer restrição."],c:1,exp:"É preciso verificar acesso, necessidade e canal adequado."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma pessoa experiente sugere ignorar uma etapa de verificação porque nunca houve problema. Você não tem dados suficientes para avaliar o risco. Qual é a decisão mais responsável?",a:["Seguir a orientação, pois experiência equivale a evidência conclusiva.","Remover a etapa apenas durante os dias de maior movimento.","Pedir que a pessoa assuma toda a responsabilidade e seguir sem verificar.","Manter o procedimento vigente até que a mudança seja avaliada e autorizada."],c:3,exp:"A ausência de problemas conhecidos não prova ausência de risco."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Um indicador melhorou depois de uma nova estratégia, mas também houve troca de sistema e mudança de equipe. Qual é a conclusão mais rigorosa?",a:["A estratégia foi a única causa porque aconteceu antes da melhoria.","A estratégia não teve efeito porque outros fatores mudaram.","A melhoria é um sinal promissor, mas os fatores simultâneos precisam ser considerados antes de atribuir causalidade.","O indicador deve ser ignorado até que não exista nenhuma outra variável."],c:2,exp:"A sequência temporal não demonstra causalidade isoladamente."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Um cliente solicita uma exceção, citando uma promessa verbal feita por alguém que não está disponível. A política não esclarece o caso. O que fazer?",a:["Conceder a exceção sem verificar para evitar conflito.","Negar imediatamente porque toda exceção é proibida.","Pedir que o cliente volte outro dia sem registrar o caso.","Registrar o relato, verificar o que pode ser confirmado e consultar quem tem autoridade para decidir, sem prometer um resultado."],c:3,exp:"A resposta verifica os fatos e mantém a decisão com a autoridade competente."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Você encontra um erro seu em um documento já utilizado por outras pessoas. A correção é simples, mas alguns colegas podem ter tomado decisões com base na versão anterior. Qual é a melhor ação?",a:["Corrigir silenciosamente o arquivo e não avisar para evitar preocupação.","Identificar o alcance do erro, comunicar as pessoas afetadas e disponibilizar a versão corrigida.","Esperar para ver se alguém percebe.","Apagar o documento original sem registrar a correção."],c:1,exp:"Também é importante alertar quem pode ter utilizado a informação incorreta."}
+];
+
+function simulation(){
+shell("Desafio de conhecimento","Quiz do Profissional Nota 10 🧠",
+"Perguntas inéditas: 2 médias e 9 extremamente difíceis. Analise o contexto e escolha a alternativa mais defensável.",
+`<section class="card"><div class="section-title"><h2>🎯 Suas perguntas</h2><span id="quizCount" class="pill"></span></div>
+<div class="progress"><div id="quizProgress"></div></div><div id="quizArea"></div></section>`);
+renderQuestion();
+}
+
+function renderQuestion(){
+const area=$("quizArea");
+if(!area)return;
+if(S.quizIndex>=questions.length){quizFinished();return}
+const i=S.quizIndex,q=questions[i],key="quiz-"+i,answered=!!S.answers[key];
+$("quizCount").textContent=`Pergunta ${i+1} de ${questions.length}`;
+$("quizProgress").style.width=((i+1)/questions.length*100)+"%";
+area.innerHTML=`<div class="question"><span class="pill">${q.level}</span><h3>${i+1}. ${q.q}</h3>
+<div class="answers">${q.a.map((a,j)=>`<button class="answer" ${answered?"disabled":""} onclick="answerQuestion(${i},${j},this)">${String.fromCharCode(65+j)}. ${a}</button>`).join("")}</div>
+<div id="feedback"></div><div id="quizNext"></div></div>`;
+if(answered){
+$("feedback").className="feedback";
+$("feedback").textContent="Você já respondeu esta pergunta. "+q.exp;
+$("quizNext").innerHTML=`<button class="btn primary" onclick="nextQuestion()">Próxima pergunta →</button>`;
+}
+}
+
+function answerQuestion(i,j,b){
+const q=questions[i],key="quiz-"+i;
+if(S.answers[key])return;
+const ok=j===q.c;
+b.parentElement.querySelectorAll("button").forEach((x,k)=>{
+x.disabled=true;
+if(k===q.c)x.classList.add("correct");
+});
+if(!ok)b.classList.add("wrong");
+$("feedback").className="feedback "+(ok?"good":"bad");
+$("feedback").textContent=(ok?"🎉 CORRETO! ":"❌ NÃO É A MELHOR DECISÃO. ")+q.exp;
+S.answers[key]=true;
+if(ok){
+S.answers["quiz-correct-"+i]=true;
+reward(10);
+playSound(true);
+notify("Resposta correta! +10 XP","good");
+}else{
+update();
+playSound(false);
+notify("Resposta registrada. Analise a explicação!","bad");
+}
+$("quizNext").innerHTML=`<button class="btn primary" style="margin-top:12px" onclick="nextQuestion()">${i===questions.length-1?"Ver resultado 🏆":"Próxima pergunta →"}</button>`;
+}
+
+function nextQuestion(){
+S.quizIndex++;
+persist();
+renderQuestion();
+}
+
+function quizFinished(){
+const correct=questions.filter((q,i)=>S.answers["quiz-correct-"+i]).length;
+$("quizArea").innerHTML=`<div class="end-screen"><div class="big-emoji">🏆</div><h2>Quiz concluído!</h2>
+<p>Você acertou ${correct} de ${questions.length} perguntas nesta tentativa.</p>
+<button class="btn primary" onclick="resetQuiz()">Refazer quiz ↻</button>
+<button class="btn secondary" onclick="go('games')">Ir para os jogos 🎮</button></div>`;
+}
+
+function resetQuiz(){
+questions.forEach((q,i)=>{
+delete S.answers["quiz-"+i];
+delete S.answers["quiz-correct-"+i];
+});
+S.quizIndex=0;
+persist();
+simulation();
+notify("Quiz reiniciado!","good");
+}
+
+/* JOGOS */
+const quickChallenges=[
+{level:"MÉDIA",q:"Você termina suas tarefas antes do prazo e percebe que um colega está sobrecarregado. Qual é a melhor iniciativa?",a:["Assumir as tarefas dele sem conversar.","Oferecer ajuda e combinar com ele quais tarefas você pode assumir.","Ignorar porque suas tarefas já acabaram."],c:1,why:"A ajuda combinada respeita responsabilidades e prioridades."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma mudança de fornecedor reduz o custo, mas os dados de qualidade abrangem apenas parte das entregas. A equipe quer aprovar o contrato anual. Qual decisão é mais sólida?",a:["Aprovar porque o menor preço já comprova vantagem.","Rejeitar para sempre o fornecedor, pois os dados são incompletos.","Comparar custo total, critérios de qualidade e risco, propondo uma validação antes de assumir um compromisso maior.","Escolher o fornecedor antigo sem analisar seus resultados."],c:2,why:"Uma decisão robusta combina custo, qualidade e risco."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Você precisa entregar uma tarefa hoje. Um colega oferece um atalho que elimina uma etapa de revisão exigida. O que fazer?",a:["Usar o atalho só desta vez porque o prazo é apertado.","Pedir ao colega que confirme que não haverá problemas e dispensar a revisão.","Usar o atalho e registrar a revisão como realizada.","Manter a revisão exigida e comunicar o conflito entre prazo e capacidade."],c:3,why:"Um prazo apertado não torna válida a omissão de uma etapa obrigatória."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma equipe apresenta resultados diferentes usando a mesma fórmula. Você descobre que cada pessoa interpretou um campo da planilha de maneira distinta. Qual ação tem maior valor preventivo?",a:["Padronizar a definição do campo, documentar o critério e recalcular os resultados relevantes.","Escolher o resultado da pessoa mais experiente.","Tirar a média de todos os resultados sem investigar a diferença.","Mandar cada pessoa continuar usando sua interpretação."],c:0,why:"Definições comuns e documentação reduzem divergências."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma atividade importante depende de uma pessoa que está ausente, e não há instrução de substituição. O prazo está próximo. Qual é a melhor resposta?",a:["Acessar a conta pessoal da pessoa ausente.","Mapear o que está confirmado, comunicar a dependência e buscar uma substituição autorizada ou ajuste de prazo.","Inventar as etapas que parecem mais prováveis.","Esperar em silêncio até a pessoa retornar."],c:1,why:"A resposta distingue fatos de suposições e procura uma solução autorizada."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma equipe cumpre todas as metas individuais, mas gera atrasos frequentes na etapa seguinte. Qual análise é mais útil?",a:["Cobrar cada pessoa para trabalhar mais rápido sem investigar o fluxo.","Eliminar a etapa seguinte para que a meta geral pareça melhor.","Analisar o processo de ponta a ponta, identificar o gargalo e avaliar efeitos das mudanças.","Manter tudo igual porque as metas individuais foram cumpridas."],c:2,why:"Metas locais podem esconder problemas no fluxo total."}
+];
+
+const detectiveChallenges=[
+{level:"MÉDIA",q:"Uma mensagem urgente pede dados de trabalho para um endereço desconhecido. O remetente parece ser conhecido. O que fazer?",a:["Enviar imediatamente para não atrasar.","Verificar a solicitação por um canal oficial antes de compartilhar qualquer dado.","Encaminhar para todo o setor perguntar se alguém conhece o endereço."],c:1,why:"Confirmar a identidade e a autorização evita exposição indevida."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Um indicador mensal caiu 15%. Ao investigar, você percebe que o sistema de medição mudou no meio do mês. Qual é o próximo passo mais rigoroso?",a:["Concluir que o desempenho piorou exatamente 15%.","Ignorar o mês inteiro sem registrar o problema.","Comparar o número diretamente com a meta e responsabilizar a equipe.","Verificar a comparabilidade entre os métodos, documentar a mudança e evitar conclusões até entender seu efeito."],c:3,why:"Uma mudança de medição pode criar diferenças artificiais."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Um colega pede que você confirme uma informação em um documento que não leu. Ele diz que todos já concordaram com o conteúdo. Como agir?",a:["Confirmar porque a equipe provavelmente revisou.","Assinar agora e ler depois se houver tempo.","Revisar o conteúdo e confirmar apenas o que você realmente verificou e tem competência para validar.","Recusar qualquer participação sem explicar."],c:2,why:"Uma confirmação profissional precisa refletir uma verificação real."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma falha aparece apenas em algumas condições e desaparece quando o procedimento é repetido. A equipe quer encerrar a investigação. Qual é a melhor abordagem?",a:["Registrar as condições observadas, buscar padrões e avaliar o risco antes de encerrar a investigação.","Encerrar imediatamente porque a falha não apareceu de novo.","Declarar que o problema está resolvido sem testar a correção.","Mudar várias etapas ao mesmo tempo para tentar eliminar a falha."],c:0,why:"Falhas intermitentes exigem registro e investigação sistemática."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Você recebe duas versões de um procedimento: uma atualizada, sem aprovação visível, e outra antiga, oficialmente publicada. Qual é a atitude mais segura?",a:["Usar a versão atualizada porque parece mais recente.","Comparar as versões, confirmar qual está autorizada com o responsável e seguir a orientação oficial vigente.","Misturar as etapas de ambas para aproveitar o melhor de cada uma.","Escolher a versão mais curta para evitar erros."],c:1,why:"A data mais recente não comprova aprovação."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Um resultado excelente foi obtido por uma pessoa, mas ninguém registrou as condições em que foi alcançado. A equipe quer transformar o método em padrão obrigatório. Qual é a melhor decisão?",a:["Tornar obrigatório imediatamente porque o resultado foi excelente.","Descartar o método por ser individual.","Repetir o resultado sem registrar nada e presumir que será igual.","Documentar as condições, testar a repetibilidade e avaliar riscos antes de padronizar."],c:3,why:"Um resultado isolado não garante repetibilidade."}
+];
+
+const surpriseChallenges=[
+{level:"EXTREMAMENTE DIFÍCIL",q:"Você recebe uma solicitação de alteração de cadastro acompanhada de documentos aparentemente válidos, mas os dados não coincidem com o registro existente. Qual é a resposta mais responsável?",a:["Alterar o cadastro porque os documentos parecem oficiais.","Ignorar a divergência e continuar o processo.","Suspender a alteração até verificar a inconsistência pelo procedimento autorizado e registrar a análise.","Pedir que um colega escolha qual dado parece mais correto."],c:2,why:"Inconsistências precisam ser verificadas por um processo autorizado."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Um projeto está atrasado. Você pode cumprir o prazo reduzindo testes de qualidade, mas não sabe o impacto dessa redução. O que fazer?",a:["Reduzir os testes e informar somente depois da entrega.","Explicar o impacto e os riscos, manter controles necessários e negociar escopo ou prazo com quem decide.","Prometer o prazo mesmo sem uma solução viável.","Alterar o registro para indicar que todos os testes foram realizados."],c:1,why:"A decisão deve tornar explícito o conflito entre prazo, escopo e qualidade."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma reunião terminou com uma decisão, mas os participantes interpretaram de formas diferentes quem executaria cada etapa. Qual medida previne melhor novos conflitos?",a:["Registrar as decisões, responsáveis, prazos e pontos que ainda precisam de confirmação.","Enviar apenas um resumo geral sem nomes ou prazos.","Presumir que cada pessoa entendeu a mesma coisa.","Esperar até a primeira tarefa atrasar para esclarecer."],c:0,why:"Responsáveis e prazos explícitos transformam uma decisão em um plano executável."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Você identifica um possível viés em uma seleção interna: todos os avaliadores usaram critérios diferentes para candidatos diferentes. Qual é a ação mais justa?",a:["Escolher a pessoa mais conhecida pela equipe.","Manter o resultado porque todos os avaliadores têm experiência.","Alterar os critérios depois de conhecer quem teve melhor resultado.","Rever a consistência dos critérios com as pessoas responsáveis e aplicar regras comparáveis de forma transparente."],c:3,why:"Critérios consistentes e transparentes ajudam a reduzir decisões arbitrárias."},
+{level:"EXTREMAMENTE DIFÍCIL",q:"Uma tarefa foi concluída no prazo, mas dependeu de uma solução improvisada que pode causar problemas se for repetida. Qual é o próximo passo mais útil?",a:["Não registrar porque o prazo foi cumprido.","Registrar a improvisação, avaliar seus riscos e buscar uma solução aprovada antes de repeti-la.","Transformar o improviso em regra automaticamente.","Repetir a solução porque funcionou uma vez."],c:1,why:"Cumprir o prazo não comprova que o método seja seguro ou autorizado."}
+];
+
+function games(){
+shell("Área de diversão","Escolha seu jogo! 🎮",
+"Cada jogo tem seus próprios cenários: desafio relâmpago, investigação e situações surpresa.",
+`<div class="grid">
+${tile("⚡","Desafio relâmpago","Dilemas de decisão, prazos e qualidade.","Jogar agora →","startGame('quick')")}
+${tile("🕵️","Detetive profissional","Investigue evidências, procedimentos e inconsistências.","Investigar →","startGame('detective')")}
+${tile("🧠","Memória das atitudes","Combine conceitos profissionais e explicações.","Jogar memória →","startGame('memory')")}
+${tile("🎲","Situação surpresa","Resolva um dilema diferente a cada sorteio.","Sortear situação →","startGame('surprise')")}
+</div>
+<section class="card" style="margin-top:15px" id="gameArea">
+<div class="end-screen"><div class="big-emoji">🎯</div><h2>Pronto para jogar?</h2><p>Escolha um dos jogos acima.</p></div>
+</section>`);
+}
+
+function scrollToGame(){
+setTimeout(()=>$("gameArea")?.scrollIntoView({behavior:"smooth",block:"start"}),60);
+}
+
+function startGame(type){
+currentGame=type;
+gameIndex=0;
+gameAnswered=false;
+if(type==="memory"){renderMemory();scrollToGame();return}
+if(type==="quick")renderQuick();
+if(type==="detective")renderDetective();
+if(type==="surprise")renderSurprise();
+scrollToGame();
+}
+
+function renderChallenge(list,type,title){
+if(gameIndex>=list.length){finishGame(type);return}
+const c=list[gameIndex];
+gameAnswered=false;
+$("gameArea").innerHTML=`<div class="game-card">
+<span class="pill">${c.level} • ${title} ${gameIndex+1} de ${list.length}</span>
+<h2>${c.q}</h2>
+<div class="answers">${c.a.map((a,i)=>`<button class="answer game-option" onclick="answerGame(${i},'${type}')">${String.fromCharCode(65+i)}. ${a}</button>`).join("")}</div>
+<div id="gameFeedback"></div><div id="gameNext"></div>
+<button class="btn secondary" onclick="games()">← Voltar aos jogos</button>
+</div>`;
+}
+
+function renderQuick(){renderChallenge(quickChallenges,"quick","⚡ Desafio")}
+function renderDetective(){renderChallenge(detectiveChallenges,"detective","🕵️ Caso")}
+
+function answerGame(j,type){
+if(gameAnswered)return;
+gameAnswered=true;
+const list=type==="quick"?quickChallenges:detectiveChallenges;
+const c=list[gameIndex],ok=j===c.c;
+document.querySelectorAll(".game-option").forEach((b,i)=>{
+b.disabled=true;
+if(i===c.c)b.classList.add("correct");
+});
+if(!ok)document.querySelectorAll(".game-option")[j].classList.add("wrong");
+gameFeedback(ok,c.why);
+$("gameNext").innerHTML=`<button class="btn primary" style="margin-top:12px" onclick="advanceGame('${type}')">${gameIndex===list.length-1?"Ver resultado 🏆":"Próximo desafio →"}</button>`;
+}
+
+function gameFeedback(ok,text){
+$("gameFeedback").className="feedback "+(ok?"good":"bad");
+$("gameFeedback").textContent=(ok?"🎉 CORRETO! ":"❌ NÃO É A MELHOR DECISÃO. ")+text;
+if(ok){reward(10);playSound(true);notify("Boa escolha! +10 XP","good")}
+else{playSound(false);notify("Leia a explicação e continue!","bad")}
+}
+
+function advanceGame(type){
+gameIndex++;
+if(type==="quick")renderQuick();
+else renderDetective();
+scrollToGame();
+}
+
+function renderSurprise(){
+const c=surpriseChallenges[Math.floor(Math.random()*surpriseChallenges.length)];
+gameAnswered=false;
+$("gameArea").innerHTML=`<div class="game-card">
+<span class="pill">${c.level} • 🎲 Situação surpresa</span>
+<h2>${c.q}</h2>
+<div class="answers">${c.a.map((a,i)=>`<button class="answer game-option" onclick="answerSurprise(${i})">${String.fromCharCode(65+i)}. ${a}</button>`).join("")}</div>
+<div id="gameFeedback"></div><div id="gameNext"></div>
+<button class="btn secondary" onclick="games()">← Voltar aos jogos</button>
+</div>`;
+window.currentSurprise=c;
+}
+
+function answerSurprise(j){
+if(gameAnswered)return;
+gameAnswered=true;
+const c=window.currentSurprise;
+document.querySelectorAll(".game-option").forEach((b,i)=>{
+b.disabled=true;
+if(i===c.c)b.classList.add("correct");
+});
+if(j!==c.c)document.querySelectorAll(".game-option")[j].classList.add("wrong");
+gameFeedback(j===c.c,c.why);
+$("gameNext").innerHTML=`<button class="btn primary" style="margin-top:12px" onclick="renderSurprise();scrollToGame()">Sortear outra situação 🎲</button>`;
+}
+
+/* MEMÓRIA */
+const memoryPairs=[
+{a:"🤝 Trabalho em equipe",b:"Cooperar e compartilhar tarefas"},
+{a:"🔐 Segurança",b:"Proteger senhas e dados"},
+{a:"⏰ Pontualidade",b:"Respeitar horários e prazos"},
+{a:"⚖️ Ética",b:"Agir com honestidade"}
+];
+
+function renderMemory(){
+currentGame="memory";
+memoryCards=[];
+memoryFirst=null;
+memoryLock=false;
+memoryFound=0;
+memoryPairs.forEach((p,i)=>{
+memoryCards.push({pair:i,text:p.a,kind:0},{pair:i,text:p.b,kind:1});
+});
+for(let i=memoryCards.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[memoryCards[i],memoryCards[j]]=[memoryCards[j],memoryCards[i]];
+}
+$("gameArea").innerHTML=`<div class="game-card">
+<span class="pill">🧠 Jogo da memória</span>
+<h2>Encontre todos os pares!</h2><p>Combine cada conceito com sua explicação.</p>
+<div id="memoryGrid" class="grid">${memoryCards.map((c,i)=>`<button class="answer" style="min-height:90px;text-align:center;font-weight:bold" onclick="flipMemory(${i},this)">❔<br>Toque para revelar</button>`).join("")}</div>
+<div id="memoryFeedback" class="feedback">Pares encontrados: 0 de ${memoryPairs.length}</div>
+<div id="memoryNext"></div>
+<button class="btn secondary" onclick="games()">← Voltar aos jogos</button>
+</div>`;
+scrollToGame();
+}
+
+function flipMemory(i,b){
+if(memoryLock||b.dataset.found==="1"||memoryFirst?.i===i)return;
+b.textContent=memoryCards[i].text;
+b.classList.add("selected");
+if(!memoryFirst){memoryFirst={i,b};return}
+const first=memoryFirst;
+memoryFirst=null;
+if(memoryCards[first.i].pair===memoryCards[i].pair&&memoryCards[first.i].kind!==memoryCards[i].kind){
+[first.b,b].forEach(x=>{x.classList.add("correct");x.dataset.found="1"});
+memoryFound++;
+playSound(true);
+$("memoryFeedback").className="feedback good";
+$("memoryFeedback").textContent=`Pares encontrados: ${memoryFound} de ${memoryPairs.length}`;
+if(memoryFound===memoryPairs.length){
+reward(20);
+notify("Todos os pares encontrados! +20 XP","good");
+$("memoryNext").innerHTML=`<h2>🏆 Você venceu!</h2><button class="btn primary" onclick="renderMemory()">Jogar novamente ↻</button>`;
+}
+}else{
+memoryLock=true;
+playSound(false);
+$("memoryFeedback").className="feedback bad";
+$("memoryFeedback").textContent="❌ Não combinam! Tente novamente.";
+setTimeout(()=>{
+[first.b,b].forEach(x=>{
+if(x.dataset.found!=="1"){
+x.innerHTML="❔<br>Toque para revelar";
+x.classList.remove("selected");
+}
+});
+memoryLock=false;
+},900);
+}
+}
+
+function finishGame(type){
+$("gameArea").innerHTML=`<div class="end-screen"><div class="big-emoji">🏆</div>
+<h2>${type==="quick"?"Desafio relâmpago concluído!":"Investigação concluída!"}</h2>
+<p>Você terminou os desafios. Leia as explicações e tente novamente para praticar.</p>
+<button class="btn primary" onclick="startGame('${type}')">Jogar novamente ↻</button>
+<button class="btn secondary" onclick="games()">Voltar aos jogos 🎮</button>
+</div>`;
+scrollToGame();
+}
+
+/* CENAS ANIMADAS */
+const videoTopics=[
+{title:"Comunicação profissional",emoji:"🗣️",desc:"Como se comunicar com clareza e respeito.",lines:[["🧑‍💼","👩‍💻","Bom dia! Posso ajudar você com essa tarefa?"],["👩‍💻","🧑‍💼","Claro! Vou explicar o que precisamos fazer."],["🧑‍💼","👩‍💻","Obrigado por explicar. Vamos trabalhar juntos!"]]},
+{title:"Trabalho em equipe",emoji:"🤝",desc:"Cooperação, escuta e responsabilidade.",lines:[["🧑‍🔧","👩‍💻","Estamos com muitas tarefas para terminar."],["👩‍💻","🧑‍🔧","Podemos dividir as atividades conforme as habilidades."],["🧑‍🔧","👩‍💻","Boa ideia! Assim todos colaboram."]]},
+{title:"Atendimento ao cliente",emoji:"😊",desc:"Atender com educação, paciência e atenção.",lines:[["🧑‍💼","👨‍🦳","Olá! Estou procurando informações sobre um produto."],["🧑‍💼","👨‍🦳","Claro! Vou verificar as informações para você."],["👨‍🦳","🧑‍💼","Obrigado pela atenção e pela ajuda!"]]},
+{title:"Ética profissional",emoji:"⚖️",desc:"Agir com honestidade e respeito.",lines:[["👩‍💻","🧑‍💼","Encontrei um erro em um relatório."],["🧑‍💼","👩‍💻","É importante comunicar o erro com honestidade."],["👩‍💻","🧑‍💼","Vou avisar a equipe para corrigirmos juntos."]]},
+{title:"Organização",emoji:"📋",desc:"Planejar atividades e cumprir prazos.",lines:[["🧑‍💼","👩‍💻","Temos várias tarefas para hoje."],["👩‍💻","🧑‍💼","Vou listar as prioridades e os prazos."],["🧑‍💼","👩‍💻","Assim acompanhamos o que já foi concluído."]]},
+{title:"Resolução de conflitos",emoji:"🧩",desc:"Resolver desacordos por meio do diálogo.",lines:[["🧑‍🔧","👩‍💻","Acho que não concordamos sobre essa decisão."],["👩‍💻","🧑‍🔧","Vamos ouvir os argumentos de cada um."],["🧑‍🔧","👩‍💻","Vamos buscar uma solução justa."]]},
+{title:"Segurança da informação",emoji:"🔐",desc:"Proteger senhas e dados da empresa.",lines:[["👩‍💻","🧑‍💼","Recebi uma mensagem pedindo minha senha."],["🧑‍💼","👩‍💻","Não compartilhe senhas nem clique em links suspeitos."],["👩‍💻","🧑‍💼","Vou confirmar a solicitação por um canal oficial."]]},
+{title:"Inclusão e respeito",emoji:"💚",desc:"Valorizar diferenças e incluir as pessoas.",lines:[["🧑‍💼","👩‍💻","Uma pessoa nova entrou para a equipe."],["👩‍💻","🧑‍💼","Vamos recebê-la e explicar como trabalhamos."],["🧑‍💼","👩‍💻","Um ambiente respeitoso ajuda todos a participar."]]},
+{title:"Intérprete de línguas",emoji:"🌍",desc:"Apoiar a comunicação entre pessoas que utilizam idiomas diferentes ou Libras.",lines:[["🧑‍💼","🌍","Olá! Você prefere conversar em outro idioma ou utilizar Libras?"],["🌍","🧑‍💼","Prefiro me comunicar em Libras. Obrigado por perguntar."],["🧑‍💼","🌍","Vamos buscar o apoio adequado para garantir uma comunicação clara e respeitosa."]]}
+];
+
+function videos(){
+const t=videoTopics[S.videoIndex];
+const done=!!S.answers["video-"+S.videoIndex];
+shell("Histórias animadas","Aprenda assistindo! 🎬",
+"Escolha uma história e reproduza a cena animada diretamente nesta página.",
+`<div class="video-layout"><section>
+<div class="video-screen">
+<div class="video-top"><span class="video-badge">🎬 CENA ANIMADA</span><span class="video-badge" id="sceneNumber"></span></div>
+<div class="scene" id="sceneActors"></div><div class="video-caption" id="videoCaption"></div>
+</div>
+<div class="video-controls">
+<button class="primary" id="playButton" onclick="toggleVideo()">▶ Reproduzir</button>
+<button class="secondary" onclick="previousStep()">↶ Voltar</button>
+<button class="secondary" onclick="nextStep()">Avançar ↷</button>
+<button class="orange" onclick="restartVideo()">↻ Rever</button>
+</div>
+<section class="card">
+<h3 id="videoTitle">${t.emoji} ${t.title}</h3><p id="videoDesc">${t.desc}</p>
+<button id="completeVideoButton" class="btn ${done?"video-done":"mint"}" onclick="completeVideo()" ${done?"disabled":""}>${done?"✅ Atividade concluída e salva":"Concluir atividade ✓"}</button>
+<p class="small" id="videoSaveMessage">${done?"Esta atividade já está salva como concluída.":"Conclua a cena para salvar seu progresso."}</p>
+</section>
+<p class="small">Estas são cenas animadas com personagens e falas, não gravações reais.</p>
+</section>
+<section><h2>Escolha a história</h2>
+<div class="scene-list">${videoTopics.map((v,i)=>`<button class="scene-choice ${i===S.videoIndex?"active":""}" onclick="selectVideo(${i})"><span>${v.emoji}</span><div><strong>${v.title}</strong><small>${v.desc}</small></div></button>`).join("")}</div>
+</section></div>`);
+renderVideoStep();
+}
+
+function stopVideo(){
+if(videoTimer)clearInterval(videoTimer);
+videoTimer=null;
+videoPlaying=false;
+}
+
+function selectVideo(i){
+stopVideo();
+S.videoIndex=i;
+S.videoStep=0;
+persist();
+videos();
+}
+
+function renderVideoStep(){
+const v=videoTopics[S.videoIndex];
+const step=Math.max(0,Math.min(S.videoStep,v.lines.length-1));
+const line=v.lines[step];
+$("sceneNumber").textContent=`Cena ${step+1} de ${v.lines.length}`;
+$("sceneActors").innerHTML=`<div class="person">${line[0]}</div><div class="bubble">${line[2]}</div><div class="person">${line[1]}</div>`;
+$("videoCaption").textContent=line[2];
+$("videoTitle").textContent=v.emoji+" "+v.title;
+$("videoDesc").textContent=v.desc;
+$("playButton").textContent=videoPlaying?"⏸ Pausar":"▶ Reproduzir";
+}
+
+function toggleVideo(){
+if(videoPlaying){
+stopVideo();
+renderVideoStep();
+return;
+}
+videoPlaying=true;
+renderVideoStep();
+videoTimer=setInterval(()=>{
+if(S.videoStep<videoTopics[S.videoIndex].lines.length-1){
+S.videoStep++;
+renderVideoStep();
+}else{
+stopVideo();
+S.videoWatched[S.videoIndex]=true;
+persist();
+renderVideoStep();
+notify("Cena finalizada! Você pode concluir a atividade.","good");
+}
+},2500);
+}
+
+function nextStep(){
+stopVideo();
+S.videoStep=Math.min(videoTopics[S.videoIndex].lines.length-1,S.videoStep+1);
+renderVideoStep();
+}
+function previousStep(){
+stopVideo();
+S.videoStep=Math.max(0,S.videoStep-1);
+renderVideoStep();
+}
+function restartVideo(){
+stopVideo();
+S.videoStep=0;
+renderVideoStep();
+}
+
+function completeVideo(){
+const k="video-"+S.videoIndex;
+if(S.answers[k]){
+setVideoDone();
+notify("Esta atividade já está salva como concluída!","good");
+return;
+}
+reward(10,k);
+S.videoWatched[S.videoIndex]=true;
+persist();
+setVideoDone();
+playSound(true);
+notify("Atividade concluída e salva! +10 XP","good");
+}
+
+function setVideoDone(){
+const b=$("completeVideoButton");
+if(b){
+b.textContent="✅ Atividade concluída e salva";
+b.classList.remove("mint");
+b.classList.add("video-done");
+b.disabled=true;
+}
+$("videoSaveMessage").textContent="Esta atividade já está salva como concluída.";
+}
+
+/* TESTE DE PERFIL */
+const profileQuestions=[
+{q:"Quando recebe uma crítica construtiva, você:",a:["Analisa o comentário e procura melhorar.","Ignora porque já conhece seu trabalho.","Responde imediatamente para se defender."],c:0},
+{q:"Quando a equipe enfrenta um problema, você:",a:["Espera que outra pessoa resolva.","Ajuda a entender o problema e combina uma ação.","Procura alguém para responsabilizar."],c:1},
+{q:"Quando recebe várias tarefas urgentes, você:",a:["Começa pela mais fácil sem avaliar prazos.","Faz todas ao mesmo tempo.","Organiza prioridades e confirma o que é mais urgente."],c:2},
+{q:"Quando percebe um erro no próprio trabalho:",a:["Comunica, corrige e aprende com a situação.","Espera para ver se alguém percebe.","Altera o registro para esconder o erro."],c:0},
+{q:"Quando alguém apresenta uma opinião diferente:",a:["Interrompe para defender sua ideia.","Escuta e avalia os argumentos apresentados.","Evita conversar com essa pessoa."],c:1}
+];
+
+function profiletest(){
+profileAnswers={};
+shell("Autoconhecimento","Descubra seu perfil profissional 🧩",
+"Responda às situações e descubra quais habilidades você já demonstra e quais pode desenvolver.",
+`<section class="card" id="profileTestArea"><h2>Teste de perfil</h2>
+<p>Escolha a atitude que mais representa sua forma de agir.</p>
+<div id="profileQuestions"></div>
+<button class="btn primary full" onclick="finishProfileTest()">Ver meu resultado</button></section>`);
+$("profileQuestions").innerHTML=profileQuestions.map((q,i)=>`
+<div class="question"><h3>${i+1}. ${q.q}</h3><div class="answers">
+${q.a.map((a,j)=>`<button class="answer" onclick="chooseProfile(${i},${j},this)">${a}</button>`).join("")}
+</div></div>`).join("");
+}
+
+function chooseProfile(i,j,b){
+profileAnswers[i]=j;
+b.parentElement.querySelectorAll("button").forEach(x=>x.classList.remove("correct"));
+b.classList.add("correct");
+}
+
+function finishProfileTest(){
+if(Object.keys(profileAnswers).length!==profileQuestions.length){
+notify("Responda todas as situações antes de finalizar.","bad");
+return;
+}
+const score=profileQuestions.filter((q,i)=>profileAnswers[i]===q.c).length;
+const result=score>=4?"Perfil responsável e colaborativo":score>=2?"Perfil em desenvolvimento":"Perfil em descoberta";
+const key="profile-test";
+if(!S.answers[key])reward(15,key);
+$("profileTestArea").innerHTML=`<div class="profile-result"><div class="big-emoji">🌟</div>
+<h2>${result}</h2><p>Você identificou atitudes importantes para o ambiente profissional.</p>
+<p>Respostas alinhadas às melhores práticas: ${score} de 5.</p>
+<p>Continue praticando comunicação, responsabilidade, organização e respeito.</p></div>
+<button class="btn primary" onclick="profiletest()">Refazer teste</button>`;
+notify("Seu resultado foi calculado!","good");
+}
+
+/* SIMULAÇÃO REAL */
+const workScenarios=[
+{title:"Primeiro dia de trabalho",emoji:"🏢",q:"Você chega ao setor e percebe que ainda não conhece o procedimento de uma tarefa. O que faz?",a:["Começa sozinho e tenta descobrir durante a execução.","Pede orientação e confirma os passos antes de começar.","Deixa a tarefa para outra pessoa."],c:1,why:"Pedir orientação demonstra responsabilidade e evita erros."},
+{title:"Atendimento",emoji:"😊",q:"Uma pessoa chega com uma dúvida e você não sabe a resposta. Qual atitude é melhor?",a:["Inventar uma resposta para parecer preparado.","Dizer que não sabe e encerrar o atendimento.","Informar que vai verificar e procurar a orientação correta."],c:2,why:"É melhor buscar a informação correta do que fornecer uma resposta inventada."},
+{title:"Organização do setor",emoji:"📋",q:"Você percebe que documentos importantes estão misturados e podem ser perdidos. O que faz?",a:["Organiza conforme os critérios definidos e informa a equipe.","Guarda tudo em uma gaveta sem identificação.","Deixa para outra pessoa resolver."],c:0,why:"Organização e comunicação ajudam a manter os documentos acessíveis."},
+{title:"Trabalho em equipe",emoji:"🤝",q:"Um colega está com dificuldade para concluir uma atividade e você já terminou a sua. O que faz?",a:["Critica a demora dele.","Oferece ajuda e combina quais tarefas pode assumir.","Vai embora sem avisar."],c:1,why:"A colaboração deve ser combinada para respeitar as responsabilidades."},
+{title:"Problema inesperado",emoji:"⚠️",q:"Você identifica uma situação que pode comprometer a segurança ou a qualidade do trabalho. O que faz?",a:["Ignora porque não foi você quem causou.","Continua trabalhando normalmente.","Interrompe a ação quando necessário e comunica o responsável."],c:2,why:"Uma situação de risco deve ser comunicada e tratada pelos procedimentos adequados."}
+];
+
+function workplace(){
+workStep=0;
+shell("Experiência prática","Um dia no ambiente profissional 🏢",
+"Você será colocado em situações do cotidiano de trabalho. Tome decisões e veja as consequências.",
+`<section class="simulation-room" id="workArea"></section>`);
+renderWork();
+}
+
+function renderWork(){
+if(workStep>=workScenarios.length){
+$("workArea").innerHTML=`<div class="end-screen"><div class="big-emoji">🏆</div>
+<h2>Expediente concluído!</h2><p>Você passou por todas as situações do ambiente profissional.</p>
+<button class="btn primary" onclick="workplace()">Começar novamente</button></div>`;
+return;
+}
+const s=workScenarios[workStep];
+$("workArea").innerHTML=`<div class="section-title"><span class="pill">Missão ${workStep+1} de ${workScenarios.length}</span><span>${s.emoji}</span></div>
+<h2>${s.title}</h2><div style="text-align:center;font-size:55px">🧑‍💼</div>
+<h3>${s.q}</h3><div class="answers">${s.a.map((a,i)=>`<button class="answer" onclick="answerWork(${i})">${String.fromCharCode(65+i)}. ${a}</button>`).join("")}</div>
+<div id="workFeedback"></div><div id="workNext"></div>`;
+}
+
+function answerWork(j){
+const s=workScenarios[workStep],ok=j===s.c;
+document.querySelectorAll("#workArea .answer").forEach((b,i)=>{
+b.disabled=true;
+if(i===s.c)b.classList.add("correct");
+});
+if(!ok)document.querySelectorAll("#workArea .answer")[j].classList.add("wrong");
+$("workFeedback").className="feedback "+(ok?"good":"bad");
+$("workFeedback").textContent=(ok?"🎉 Boa decisão! ":"❌ Essa não é a melhor escolha. ")+s.why;
+if(ok)reward(10);
+playSound(ok);
+$("workNext").innerHTML=`<button class="btn primary full" style="margin-top:12px" onclick="nextWork()">Próxima missão →</button>`;
+}
+
+function nextWork(){
+workStep++;
+if(workStep>=workScenarios.length&&!S.answers["work-complete"]){
+reward(20,"work-complete");
+notify("Simulação concluída! +20 XP","good");
+}
+renderWork();
+}
+
+/* HISTÓRIAS */
+const stories=[
+{title:"O cliente insatisfeito",q:"Um cliente está irritado porque recebeu uma informação diferente da esperada. O que você faz?",a:["Interrompe e diz que o problema não é seu.","Escuta, verifica as informações e procura uma solução possível.","Promete qualquer coisa para encerrar a conversa."],c:1,why:"Escutar, verificar e apresentar alternativas demonstra responsabilidade no atendimento."},
+{title:"O erro no relatório",q:"Você encontra um erro em um relatório que já foi enviado à equipe. Qual atitude tomar?",a:["Avisar os envolvidos e encaminhar a versão corrigida.","Apagar o arquivo e fingir que nada aconteceu.","Esperar alguém descobrir o problema."],c:0,why:"A transparência permite corrigir informações e evitar decisões equivocadas."},
+{title:"A tarefa em equipe",q:"Dois colegas discordam sobre a divisão de tarefas. Como você pode ajudar?",a:["Escolher um lado sem ouvir ninguém.","Deixar o conflito aumentar.","Ouvir os dois e ajudar a combinar responsabilidades."],c:2,why:"O diálogo e a definição de responsabilidades ajudam a resolver conflitos."},
+{title:"Uma informação confidencial",q:"Um colega pede uma senha que você utiliza para acessar o sistema da empresa. O que fazer?",a:["Compartilhar porque ele trabalha na mesma equipe.","Não compartilhar e orientar que solicite o acesso pelos canais corretos.","Enviar a senha por mensagem privada."],c:1,why:"Senhas são pessoais e devem ser protegidas."}
+];
+
+function storiesPage(){
+storyStep=0;
+renderStory();
+}
+
+function renderStory(){
+if(storyStep>=stories.length){
+shell("Histórias concluídas","Você chegou ao final! 📖",
+"Você analisou situações que podem acontecer no ambiente profissional.",
+`<section class="card end-screen"><div class="big-emoji">🌟</div><h2>Boa participação!</h2>
+<p>Continue praticando suas decisões profissionais.</p>
+<button class="btn primary" onclick="storiesPage()">Recomeçar histórias</button></section>`);
+return;
+}
+const s=stories[storyStep];
+shell("Escolha sua atitude","Histórias com escolhas 📖",
+"Leia a situação, escolha uma atitude e descubra a consequência.",
+`<section class="story-card"><span class="pill">História ${storyStep+1} de ${stories.length}</span>
+<h2>${s.title}</h2><p>${s.q}</p>
+<div class="story-options">${s.a.map((a,i)=>`<button onclick="chooseStory(${i})">${String.fromCharCode(65+i)}. ${a}</button>`).join("")}</div>
+<div id="storyFeedback"></div><div id="storyNext"></div></section>`);
+}
+
+function chooseStory(j){
+const s=stories[storyStep],ok=j===s.c;
+document.querySelectorAll(".story-options button").forEach((b,i)=>{
+b.disabled=true;
+if(i===s.c)b.style.background="#c8f8e8";
+});
+if(!ok)document.querySelectorAll(".story-options button")[j].style.background="#ffdce5";
+$("storyFeedback").className="feedback "+(ok?"good":"bad");
+$("storyFeedback").textContent=(ok?"🎉 Boa escolha! ":"❌ Pense em outra possibilidade. ")+s.why;
+if(ok)reward(10);
+$("storyNext").innerHTML=`<button class="btn primary full" style="margin-top:12px" onclick="storyStep++;renderStory()">Continuar história →</button>`;
+}
+
+/* CONQUISTAS */
+function achievements(){
+const items=[
+["🌱","Primeiros passos",S.xp>=10],
+["⭐","Profissional dedicado",S.xp>=50],
+["🏅","Em evolução",S.xp>=100],
+["🏆","Destaque profissional",S.xp>=250],
+["📘","Conhecimento em prática",manualItems.every((x,i)=>S.answers["manual-"+i])],
+["🎬","Observador de cenas",videoTopics.every((x,i)=>S.answers["video-"+i])],
+["🧩","Autoconhecimento",!!S.answers["profile-test"]],
+["🏢","Experiência prática",!!S.answers["work-complete"]],
+["🌐","Conhecimento em interpretação",!!S.answers["interpreter-module"]]
+];
+shell("Suas recompensas","Conquistas e medalhas 🥇",
+"Cada conquista representa uma etapa da sua evolução.",
+`<section class="card"><h2>Suas medalhas</h2><div class="medals">
+${items.map(x=>`<div class="medal ${x[2]?"":"locked"}"><div>${x[0]}</div><strong>${x[1]}</strong><p class="small">${x[2]?"Conquistada!":"Continue praticando"}</p></div>`).join("")}
+</div>
+<div class="level-card"><h3>Seu nível atual</h3><h2>${Math.floor(S.xp/100)+1} — ${levelName()}</h2>
+<p>XP acumulados: ${S.xp}</p><div class="progress"><div style="width:${S.xp%100}%"></div></div>
+<p class="small">A cada 100 XP você avança um nível.</p></div></section>`);
+}
+
+/* ASSISTENTE */
+function assistant(){
+shell("Ajuda interativa","Assistente Profissional 🤖",
+"Escolha uma dúvida e receba uma orientação para sua vida profissional.",
+`<section class="assistant-box"><div style="font-size:55px;text-align:center">🤖</div>
+<h2>Olá! Como posso ajudar?</h2><p>Sou seu assistente de aprendizagem profissional.</p>
+<div class="assistant-options">
+<button onclick="assistantAnswer('communication')">💬 Como melhorar minha comunicação?</button>
+<button onclick="assistantAnswer('team')">🤝 Como trabalhar melhor em equipe?</button>
+<button onclick="assistantAnswer('time')">⏰ Como organizar meu tempo?</button>
+<button onclick="assistantAnswer('ethics')">⚖️ Como agir com ética?</button>
+<button onclick="assistantAnswer('customer')">😊 Como atender bem um cliente?</button>
+<button onclick="assistantAnswer('conflict')">🧩 Como resolver conflitos?</button>
+<button onclick="assistantAnswer('interpreting')">🌍 Como atender alguém que fala outro idioma ou usa Libras?</button>
+</div><div id="assistantAnswer"></div></section>`);
+}
+
+function assistantAnswer(topic){
+const answers={
+communication:"Fale de maneira clara, escute sem interromper, respeite opiniões e confirme se a outra pessoa compreendeu a mensagem.",
+team:"Colabore, compartilhe informações, respeite as diferenças e cumpra as responsabilidades combinadas.",
+time:"Anote suas tarefas, identifique prioridades, organize os prazos e reserve um momento para revisar o que foi concluído.",
+ethics:"Seja honesto, respeite informações confidenciais, reconheça seus erros e siga os procedimentos da organização.",
+customer:"Escute com atenção, mantenha a educação, confirme a necessidade e procure uma solução possível.",
+conflict:"Evite agir por impulso. Escute os envolvidos, converse com respeito e procure uma solução justa.",
+interpreting:"Primeiro, pergunte diretamente à pessoa qual é a forma de comunicação que ela prefere. Se ela utilizar outro idioma, procure apoio de alguém qualificado para interpretar. Se utilizar Libras, busque um intérprete de Libras quando necessário. Fale diretamente com a pessoa, não apenas com o intérprete. Não finja entender algo que não compreendeu e respeite a privacidade das informações."
+};
+$("assistantAnswer").innerHTML=`<div class="tip-output"><strong>🤖 Orientação do assistente</strong>${answers[topic]}</div>`;
+}
+
+/* CARTÕES */
+const flashcards=[
+["COMUNICAÇÃO","Escutar, falar com clareza e confirmar informações."],
+["PONTUALIDADE","Respeitar horários, prazos e avisar sobre imprevistos."],
+["ÉTICA","Agir com honestidade e responsabilidade."],
+["TRABALHO EM EQUIPE","Cooperar, compartilhar informações e respeitar os colegas."],
+["ORGANIZAÇÃO","Planejar tarefas e estabelecer prioridades."],
+["ATENDIMENTO","Ouvir a necessidade e procurar uma solução."],
+["SEGURANÇA DIGITAL","Proteger senhas, documentos e dados."],
+["INCLUSÃO","Respeitar diferenças e garantir participação."],
+["INTÉRPRETE DE LÍNGUAS","Facilitar a comunicação entre idiomas diferentes ou em Libras, com fidelidade e respeito."]
+];
+
+function flashcardsPage(){
+flashIndex=0;
+flashBack=false;
+renderFlashcard();
+}
+
+function renderFlashcard(){
+const f=flashcards[flashIndex];
+shell("Aprenda brincando","Cartões de aprendizagem 🃏",
+"Clique no cartão para revelar a explicação. Avance para estudar outro conceito.",
+`<section class="card"><div class="section-title"><h2>Cartão ${flashIndex+1} de ${flashcards.length}</h2><span class="pill">Aprendizagem</span></div>
+<div class="flashcard" onclick="flipFlashcard()" id="flashcard">${flashBack?f[1]:f[0]+" ❔"}</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px">
+<button class="btn secondary" onclick="previousFlash()">← Anterior</button>
+<button class="btn primary" onclick="flipFlashcard()">Virar cartão ↻</button>
+<button class="btn secondary" onclick="nextFlash()">Próximo →</button>
+</div></section>`);
+}
+
+function flipFlashcard(){
+flashBack=!flashBack;
+$("flashcard").textContent=flashBack?flashcards[flashIndex][1]:flashcards[flashIndex][0]+" ❔";
+}
+function nextFlash(){flashIndex=(flashIndex+1)%flashcards.length;flashBack=false;renderFlashcard()}
+function previousFlash(){flashIndex=(flashIndex-1+flashcards.length)%flashcards.length;flashBack=false;renderFlashcard()}
+
+/* ANTES E DEPOIS */
+const comparisons=[
+["Um colega cometeu um erro.","Você nunca faz nada direito!","Percebi um erro. Vamos verificar e corrigir juntos?"],
+["Um cliente está com dúvida.","Isso não é problema meu.","Vou verificar a informação e ajudar você."],
+["Você recebeu uma tarefa nova.","Vou fazer de qualquer jeito.","Vou confirmar as orientações antes de começar."],
+["Você discorda de uma ideia.","Sua ideia não faz sentido.","Podemos analisar as opções e comparar os resultados?"],
+["Você está atrasado.","Não vou avisar ninguém.","Vou comunicar o imprevisto e alinhar a previsão de chegada."]
+];
+
+function examples(){
+shell("Aprenda a transformar atitudes","Antes e depois 🔄",
+"Veja como pequenas mudanças na comunicação podem melhorar o ambiente profissional.",
+`<section class="card">${comparisons.map((x,i)=>`
+<div class="before-after"><div><strong>Situação ${i+1}</strong><div class="bad-example"><strong>❌ Antes</strong><p>${x[1]}</p></div></div>
+<div><strong>Atitude melhorada</strong><div class="good-example"><strong>✅ Depois</strong><p>${x[2]}</p></div></div></div>
+<p class="small">${x[0]}</p>`).join("")}</section>`);
+}
+
+/* AVALIAÇÃO */
+function evaluation(){
+selectedRating=0;
+shell("Sua opinião importa","Avalie nosso site ⭐",
+"Conte o que achou da experiência e ajude a melhorar o Profissional Nota 10.",
+`<section class="card"><h2>Como foi sua experiência?</h2>
+<p>Escolha uma nota de 1 a 5 estrelas.</p>
+<div class="evaluation-stars" id="stars">
+${[1,2,3,4,5].map(n=>`<button onclick="selectRating(${n})" id="star${n}">☆</button>`).join("")}
+</div>
+<p id="ratingText" class="small">Nenhuma nota selecionada.</p>
+<label for="evaluationComment"><strong>O que você mais gostou ou mudaria?</strong></label>
+<textarea id="evaluationComment" rows="4" placeholder="Escreva sua opinião..."></textarea>
+<button class="btn primary full" style="margin-top:12px" onclick="saveEvaluation()">Enviar avaliação</button>
+<div id="evaluationMessage"></div></section>`);
+}
+
+function selectRating(n){
+selectedRating=n;
+[1,2,3,4,5].forEach(i=>$("star"+i).textContent=i<=n?"⭐":"☆");
+$("ratingText").textContent=`Você selecionou ${n} de 5 estrelas.`;
+}
+
+function saveEvaluation(){
+if(!selectedRating){
+notify("Escolha uma nota antes de enviar.","bad");
+return;
+}
+const comment=$("evaluationComment").value.trim();
+S.evaluation={rating:selectedRating,comment};
+persist();
+$("evaluationMessage").innerHTML=`<div class="feedback good">💜 Obrigado por avaliar o Profissional Nota 10! Sua opinião foi salva neste dispositivo.</div>`;
+notify("Avaliação registrada!","good");
+}
+
+/* CERTIFICADO */
+function escapeHTML(s){
+return String(s).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function certificate(){
+shell("Sua conquista","Seu certificado 🏆",
+"Continue praticando as habilidades do Profissional Nota 10.",
+`<section class="card"><div class="certificate"><div style="font-size:55px">🏆</div>
+<div class="eyebrow">Certificado de participação</div><h2>Profissional Nota 10</h2>
+<p>Certificamos que</p><h2>${escapeHTML(S.name||"Participante")}</h2>
+<p>participou das atividades interativas sobre comunicação, ética, organização, respeito e trabalho em equipe.</p>
+<p><strong>XP conquistados:</strong> ${S.xp} • <strong>Atividades:</strong> ${S.done}</p>
+<p><strong>Nível:</strong> ${levelName()}</p></div>
+<button class="btn primary no-print" style="margin-top:15px" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+<button class="btn secondary no-print" style="margin-top:15px" onclick="go('home')">Voltar ao início 🏠</button></section>`);
+}
+
+/* INICIALIZAÇÃO */
+update();
+go("home");
+</script>
+</body>
+</html>
